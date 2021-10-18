@@ -38,7 +38,7 @@
         <hr>
         <div class="container text-left">
 
-            <a href="<%=request.getContextPath()%>/new" class="btn btn-success">Thêm region</a>
+            <a href="/region/new" class="btn btn-success">Thêm region</a>
         </div>
         <br>
         <table class="table table-bordered">
@@ -50,26 +50,25 @@
                 <th>Điều chỉnh</th>
             </tr>
             </thead>
-            <body>
-            <!--   for (Todo todo: todos) {  -->
-            <c:forEach var="region" items="${listRegion}">
 
+
+            <c:forEach items="${listRegion}" var="region" >
                 <tr>
                     <td>
-                        <c:out value="${region.regionID}" />
+                        ${region.regionID}
                     </td>
                     <td>
-                        <c:out value="${region.name}" />
+                        <c:out value= "${region.name}"/>
                     </td>
                     <td>
-                        <c:out value="${region.continentID}" />
+                        <c:out value= "${region.continentID}"/>
                     </td>
-                    <td><a href="edit?id=<c:out value='${region.regionID}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${region.regionID}' />">Delete</a></td>
+                    <td><a href="edit?id=<c:out value='${region.regionID}'/>">Edit</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <a href="/region/delete?id=<c:out value='${region.regionID}' />">Delete</a></td>
                 </tr>
             </c:forEach>
-            <!-- } -->
-            </body>
+
+
 
         </table>
     </div>

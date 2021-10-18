@@ -8,6 +8,12 @@ public class Region {
     public Region() {
     }
 
+    public Region(int regionID, String name, int continentID) {
+        this.regionID = regionID;
+        this.name = name;
+        this.continentID = continentID;
+    }
+
     public int getContinentID() {
         return continentID;
     }

@@ -17,14 +17,16 @@ import java.util.List;
 public class ShowListRegion extends HttpServlet {
     private DBUtil dbUtil;
 
+    @Override
     public void init(){
         dbUtil = new DBUtil();
     }
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Region> list = dbUtil.selectAll();
         request.setAttribute("listRegion", list);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/list-region.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/listRegion.jsp");
         dispatcher.forward(request, response);
     }
 
