@@ -50,9 +50,9 @@
                 <th>Điều chỉnh</th>
             </tr>
             </thead>
+            <div class="demo">
 
-
-            <c:forEach items="${listRegion}" var="region" >
+            <c:forEach items="${listRegion}" var="region"  >
                 <tr>
                     <td>
                         ${region.regionID}
@@ -63,17 +63,37 @@
                     <td>
                         <c:out value= "${region.continentID}"/>
                     </td>
-                    <td><a href="edit?id=<c:out value='${region.regionID}'/>">Edit</a>
+                    <td><a href="/region/edit?id=<c:out value='${region.regionID}'/>">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp; <a href="/region/delete?id=<c:out value='${region.regionID}' />">Delete</a></td>
                 </tr>
             </c:forEach>
+            </div>
 
 
 
         </table>
     </div>
 </div>
-
-
 </body>
+
+<%--<script language="javascript">--%>
+<%--    $(document).ready(function () {--%>
+<%--        $(document).on('click', '#delete', function (e) {--%>
+<%--            e.preventDefault();--%>
+<%--            var employeeId = $(this).data("id");--%>
+<%--            if (confirm('Bạn có chắc chắn muốn xóa') == true) {--%>
+<%--                $.ajax({--%>
+<%--                    url: "/region/delete",--%>
+<%--                    type: "get",--%>
+<%--                    data: {--%>
+<%--                        employeeId: employeeId--%>
+<%--                    },--%>
+<%--                    success: function (result) {--%>
+<%--                        $("#list").load(" .list");--%>
+<%--                    }--%>
+<%--                });--%>
+<%--            }--%>
+<%--        })--%>
+<%--    })--%>
+<%--</script>--%>
 </html>

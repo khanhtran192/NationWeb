@@ -41,7 +41,7 @@ public class AddRegion extends HttpServlet {
         newRegion.setContinentID(Integer.parseInt(req.getParameter("continentID")));
         dbUtil.insertRegion(newRegion);
 
-        resp.sendRedirect("/region/list");
+        resp.sendRedirect("/region/listpagination?page=1");
 
     }
 }

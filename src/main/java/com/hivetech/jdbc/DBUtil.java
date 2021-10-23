@@ -2,19 +2,18 @@ package com.hivetech.jdbc;
 
 import com.hivetech.model.Region;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBUtil {
     static MySQLConnection mysqlConnec = new MySQLConnection();
     private static String SELECT_REGION = "SELECT * FROM regions;";
-    private static String SELECT_BY_NAME = "SELECT * FROM ? WHERE name = ?;";
+    private static String UPDATE_REGION = "UPDATE regions SET  name= ?, continent_id =? WHERE region_id = ?;";
     private static String INSERT_REGION = "INSERT INTO regions ( name, continent_id) VALUES( ?, ?);";
     private static String DELETE_REGION = "DELETE FROM regions WHERE region_id = ?;";
+
+
 
     public DBUtil() {
     }
@@ -61,6 +60,41 @@ public class DBUtil {
             rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;
+    }
+
+    public boolean updateRegion(Region region) throws SQLException {
+        boolean rowUpdated;
+        try (Connection connection = mysqlConnec.getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_REGION);) {
+            statement.setString(1, region.getName());
+            statement.setInt(2, region.getContinentID());;
+
+            statement.setInt(3, region.getRegionID());
+
+            rowUpdated = statement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+
+    public List<Region> showPag(int start,int total){
+//        int start = 0;
+//        int total = 0;
+        List<Region> regions=new ArrayList<Region>();
+        try{
+            Connection connection = mysqlConnec.getConnection();
+            PreparedStatement ps=connection.prepareStatement("select * from regions limit "+(start-1)+","+total);
+            ResultSet resultSet=ps.executeQuery();
+            while(resultSet.next()){
+
+                int regionID = resultSet.getInt("region_id");
+                String name = resultSet.getString("name");
+                int continentID = resultSet.getInt("continent_id");
+                regions.add(new Region(regionID, name, continentID));
+
+            }
+            connection.close();
+        }catch(Exception e){System.out.println(e);}
+        return regions;
     }
 
 }
