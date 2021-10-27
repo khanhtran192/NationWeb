@@ -12,6 +12,7 @@ public class DBUtil {
     private static String UPDATE_REGION = "UPDATE regions SET  name= ?, continent_id =? WHERE region_id = ?;";
     private static String INSERT_REGION = "INSERT INTO regions ( name, continent_id) VALUES( ?, ?);";
     private static String DELETE_REGION = "DELETE FROM regions WHERE region_id = ?;";
+    private static String SEARCH_BY_NAME = "SELECT * FROM regions WHERE name = ?;";
 
 
 
@@ -96,5 +97,33 @@ public class DBUtil {
         }catch(Exception e){System.out.println(e);}
         return regions;
     }
+
+
+    public List<Region> searchRegion (String nameSearch){
+        List<Region> list = new ArrayList<>();
+        Connection connection = mysqlConnec.getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_NAME)) {
+            preparedStatement.setString(1, nameSearch);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int regionID = resultSet.getInt("region_id");
+                String name = resultSet.getString("name");
+                int continentID = resultSet.getInt("continent_id");
+                list.add(new Region(regionID, name, continentID));
+
+//                region.setRegionID(resultSet.getInt("region_id"));
+//                region.setName(resultSet.getString("name"));
+//                region.setContinentID(resultSet.getInt("continent_id"));
+//                regions.add(region);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list ;
+
+
+    }
+
+
 
 }

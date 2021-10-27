@@ -1,5 +1,3 @@
 
-O
-src/main/webapp/WEB-INF/web.xml,2/e/2e22b6edd746fa3dc40ad7276c87c8d87d72a392
-\
-,src/main/java/com/hivetech/model/Region.java,5/d/5da046278f17a58ecb2ee12c5a5a4168646e5634
+d
+4src/main/java/com/hivetech/jdbc/MySQLConnection.java,b/0/b02a16c2b4eba8ba159e585e1a7f472631090541

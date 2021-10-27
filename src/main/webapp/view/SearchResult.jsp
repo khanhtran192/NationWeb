@@ -29,10 +29,6 @@
                 </div>
             </div>
         </div>
-        <form class="form-inline my-2 my-lg-0" action="/region/search" method="post">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search by name" name="name" aria-label="Search" >
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </nav>
 </head>
 <body>
@@ -69,40 +65,35 @@
                         </td>
                         <td><a href="/region/edit?id=<c:out value='${region.regionID}'/>">Edit</a>
                             &nbsp;&nbsp;&nbsp;&nbsp; <a href="/region/delete?id=<c:out value='${region.regionID}' />">Delete</a></td>
-                            &nbsp;&nbsp;&nbsp;&nbsp; <a href="/region/countries?id=<c:out value='${region.regionID}' />">Countries</a></td>
                     </tr>
                 </c:forEach>
             </div>
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="/region/listpagination?page=1">1</a></li>
-                    <li class="page-item"><a class="page-link" href="/region/listpagination?page=2">2</a></li>
-                    <li class="page-item"><a class="page-link" href="/region/listpagination?page=3">3</a></li>
-                    <li class="page-item"><a class="page-link" href="/region/listpagination?page=4">4</a></li>
-                    <li class="page-item"><a class="page-link" href="/region/listpagination?page=5">5</a></li>
-                    <li class="page-item"><a class="page-link" href="/region/listpagination?page=6">6</a></li>
-                    <li class="page-item"><a class="page-link" href="/region/listpagination?page=7">7</a></li>
-                    <li class="page-item"><a class="page-link" href="/region/listpagination?page=8">8</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </table>
 
+
+        </table>
     </div>
 </div>
-
-
 </body>
+
+<%--<script language="javascript">--%>
+<%--    $(document).ready(function () {--%>
+<%--        $(document).on('click', '#delete', function (e) {--%>
+<%--            e.preventDefault();--%>
+<%--            var employeeId = $(this).data("id");--%>
+<%--            if (confirm('Bạn có chắc chắn muốn xóa') == true) {--%>
+<%--                $.ajax({--%>
+<%--                    url: "/region/delete",--%>
+<%--                    type: "get",--%>
+<%--                    data: {--%>
+<%--                        employeeId: employeeId--%>
+<%--                    },--%>
+<%--                    success: function (result) {--%>
+<%--                        $("#list").load(" .list");--%>
+<%--                    }--%>
+<%--                });--%>
+<%--            }--%>
+<%--        })--%>
+<%--    })--%>
+<%--</script>--%>
 </html>
